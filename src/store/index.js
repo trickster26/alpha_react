@@ -1,12 +1,17 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import campaignReducer from './reducers/campaignReducer';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { thunk } from 'redux-thunk';
+import rootReducer from './reducers';
 
-const rootReducer = combineReducers({
-  campaign: campaignReducer,
-});
+const initialState = {};
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const middleware = [thunk];
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeEnhancers(applyMiddleware(...middleware)) // Use composeWithDevTools here
+);
 
 export default store;
