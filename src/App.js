@@ -16,7 +16,7 @@ function App() {
           <div className="App">
             <h1>Alpha-D</h1>
             <Routes>
-              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/campaigns" element={<CampaignList />} />
               <Route path="/upload-csv" element={<UploadCSV />} />
