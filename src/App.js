@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import { AuthProvider } from './context/AuthContext';
@@ -15,12 +15,12 @@ function App() {
         <Router>
           <div className="App">
             <h1>Alpha-D</h1>
-            <Switch>
-              <Route path="/register" component={Register} />
-              <Route path="/login" component={Login} />
-              <Route path="/campaigns" component={CampaignList} />
-              <Route path="/upload-csv" component={UploadCSV} />
-            </Switch>
+            <Routes>
+              <Route path="/" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/campaigns" element={<CampaignList />} />
+              <Route path="/upload-csv" element={<UploadCSV />} />
+            </Routes>
           </div>
         </Router>
       </AuthProvider>
