@@ -8,9 +8,11 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
-      setAuth(response.data.token);
-      localStorage.setItem('token', response.data.token);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_ROUTE}/api/auth/login`, { email, password });
+      const token = response.data.token;
+      setAuth(token);
+      localStorage.setItem('token', token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } catch (error) {
       console.error(error);
     }
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password, companyName) => {
     try {
-      await axios.post('/api/auth/register', { username, email, password, companyName });
+      await axios.post(`${process.env.REACT_APP_BACKEND_ROUTE}/api/auth/register`, { username, email, password, companyName });
     } catch (error) {
       console.error(error);
     }
@@ -26,7 +28,10 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) setAuth(token);
+    if (token) {
+      setAuth(token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
   }, []);
 
   return (

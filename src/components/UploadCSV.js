@@ -16,7 +16,7 @@ const UploadCSV = () => {
     formData.append('CompanyID', 1); // Replace with actual CompanyID
 
     try {
-      const response = await axios.post('/api/campaigns/upload', formData);
+      const response = await axios.post('http://localhost:5000/api/campaigns/upload', formData);
       setMessage(response.data.message);
     } catch (error) {
       setMessage('Error uploading file');
@@ -26,7 +26,7 @@ const UploadCSV = () => {
   return (
     <div>
       <h2>Upload CSV</h2>
-      <a href="/download-template" download>Download Dummy CSV Template</a>
+      <a href="http://localhost:5000/download-template" download>Download Dummy CSV Template</a>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleChange} required />
         <button type="submit">Upload</button>

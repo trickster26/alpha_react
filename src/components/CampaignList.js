@@ -4,7 +4,7 @@ import { fetchCampaigns } from '../store/actions/campaignActions';
 
 const CampaignList = () => {
   const dispatch = useDispatch();
-  const { campaigns, loading, error } = useSelector(state => state.campaign);
+  const { campaigns, loading, error } = useSelector(state => state.campaigns);
 
   useEffect(() => {
     dispatch(fetchCampaigns());
