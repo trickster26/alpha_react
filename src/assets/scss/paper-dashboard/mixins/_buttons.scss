@@ -38,64 +38,64 @@
     }
 
     // btn-neutral style
-    @if $btn-color == $white-color{
+    @if $btn-color == $white-color {
         color: $primary-color;
-
-        &.btn-danger{
+    
+        &.btn-danger {
             color: $danger-color;
-
+    
             &:hover,
             &:focus,
             &:active,
-            &:active:focus{
+            &:active:focus {
                 color: $danger-states-color !important;
             }
         }
-
-        &.btn-info{
+    
+        &.btn-info {
             color: $info-color !important;
-
+    
             &:hover,
             &:focus,
             &:active,
-            &:active:focus{
+            &:active:focus {
                 color: $info-states-color !important;
             }
         }
-
-        &.btn-warning{
+    
+        &.btn-warning {
             color: $warning-color !important;
-
+    
             &:hover,
             &:focus,
             &:active,
-            &:active:focus{
+            &:active:focus {
                 color: $warning-states-color !important;
             }
         }
-
-        &.btn-success{
+    
+        &.btn-success {
             color: $success-color !important;
-
+    
             &:hover,
             &:focus,
             &:active,
-            &:active:focus{
+            &:active:focus {
                 color: $success-states-color !important;
             }
         }
-
-        &.btn-default{
+    
+        &.btn-default {
             color: $default-color !important;
-
+    
             &:hover,
             &:focus,
             &:active,
-            &:active:focus{
+            &:active:focus {
                 color: $default-states-color !important;
             }
         }
-
+    
         &.active,
         &:active,
         &:active:focus,
@@ -109,20 +109,20 @@
             color: $primary-states-color !important;
             box-shadow: none !important;
         }
-
+    
         &:hover,
-        &:focus{
+        &:focus {
             color: $primary-states-color !important;
-
-            &:not(.nav-link){
+    
+            &:not(.nav-link) {
                 box-shadow: none;
             }
-
         }
-
+    
     } @else {
         color: $white-color;
     }
+    
 
     &.btn-simple{
         color: $btn-color;
