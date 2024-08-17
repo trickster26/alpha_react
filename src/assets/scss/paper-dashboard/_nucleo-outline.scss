@@ -16,7 +16,7 @@ License - nucleoapp.com/license/
 -------------------------*/
 .nc-icon {
   display: inline-block;
-  font: normal normal normal 14px/1 'nucleo-icons';
+  font: normal normal normal math.div(14px, 1) 'nucleo-icons';
   font-size: inherit;
   speak: none;
   text-transform: none;

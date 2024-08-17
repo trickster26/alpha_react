@@ -32,7 +32,6 @@ import {
   Container,
   InputGroup,
   InputGroupText,
-  InputGroupAddon,
   Input,
 } from "reactstrap";
 
@@ -57,7 +56,7 @@ function Header(props) {
   };
   const getBrand = () => {
     let brandName = "Default Brand";
-    routes.map((prop, key) => {
+    routes?.map((prop, key) => {
       if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
         brandName = prop.name;
       }
@@ -128,11 +127,11 @@ function Header(props) {
           <form>
             <InputGroup className="no-border">
               <Input placeholder="Search..." />
-              <InputGroupAddon addonType="append">
+              <InputGroupText>
                 <InputGroupText>
                   <i className="nc-icon nc-zoom-split" />
                 </InputGroupText>
-              </InputGroupAddon>
+              </InputGroupText >
             </InputGroup>
           </form>
           <Nav navbar>
@@ -155,7 +154,7 @@ function Header(props) {
                   <span className="d-lg-none d-md-block">Some Actions</span>
                 </p>
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu end>
                 <DropdownItem tag="a">Action</DropdownItem>
                 <DropdownItem tag="a">Another Action</DropdownItem>
                 <DropdownItem tag="a">Something else here</DropdownItem>

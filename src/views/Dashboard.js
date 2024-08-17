@@ -155,8 +155,8 @@ function Dashboard() {
               </CardHeader>
               <CardBody>
                 <Line
-                  data={dashboard24HoursPerformanceChart.data}
-                  options={dashboard24HoursPerformanceChart.options}
+                  data={dashboard24HoursPerformanceChart?.data}
+                  options={dashboard24HoursPerformanceChart?.options}
                   width={400}
                   height={100}
                 />
