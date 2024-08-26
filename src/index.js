@@ -24,6 +24,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/paper-dashboard.scss?v=1.3.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
+import "./index.css";
 
 import AdminLayout from "layouts/Admin.js";
 import Register from "components/User/Register";
@@ -43,10 +44,10 @@ root.render(
           <Routes>
             <Route path="/admin/*" element={<AdminLayout />} />
             <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
-            <Route path="/" element={<Register />} />
+            <Route path="/signup" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/campaigns" element={<CampaignList />} />
-            <Route path="/upload-csv" element={<UploadCSV />} />
+            <Route path="/admin/campaigns" element={<CampaignList />} />
+            <Route path="/admin/upload-csv" element={<UploadCSV />} />
           </Routes>
         </BrowserRouter>
     </AuthProvider>
