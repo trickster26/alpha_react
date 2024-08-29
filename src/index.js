@@ -29,6 +29,7 @@ import "./index.css";
 import AdminLayout from "layouts/Admin.js";
 import Register from "components/User/Register";
 import Login from "components/User/Login";
+import Error404 from "components/User/Error";
 import CampaignList from "components/Campaign/CampaignList";
 import UploadCSV from "components/Campaign/UploadCSV";
 import { Provider } from 'react-redux';
@@ -42,6 +43,7 @@ root.render(
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="*" element={<Error404 />} />
             <Route path="/admin/*" element={<AdminLayout />} />
             <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="/signup" element={<Register />} />
