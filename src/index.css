@@ -1,13 +1,77 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #4ad0cc;
+  --secondary-color: #d7e3ef;
+  --box-shadow: 0 0 7px 0 var(--secondary-color);
+  --main-color-hover: #52b1ae;
+}
+
+body {
+  font-size: 14px;
+  color: #303030;
+  overflow-x: hidden;
+  background: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-color);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+  color: var(--main-color-hover);
+}
+
+.primary-text-color{
+  color: var(--main-color);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Sign Up Form Css */
+.sign-up-form-width{
+  width: 40%;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper img {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+.input-wrapper input {
+  padding-left: 40px;
+}
+
+input.form-control:focus {
+  border-color: var(--main-color-hover);
+  outline: none;
+  box-shadow: 0 0 0 0.2rem var(--main-color-hover); /* Optional: add shadow for better visibility */
+}
+
+@media (max-width: 576px) {
+  .sign-up-form-width{
+    width: 100%;
+  }
 }
