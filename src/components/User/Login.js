@@ -143,6 +143,9 @@ const Login = () => {
           <span style={{ color: "#a29494", textAlign: "center", display: "inline-block", width: "100%" }}>
             Don't have an account? <Link to="/signup">Create account</Link>
           </span>
+          <span style={{ color: "#a29494", textAlign: "center", display: "inline-block", width: "100%" }}>
+            <Link to="/resetPassword">Forget Password</Link>
+          </span>
         </div>
   
       </form>

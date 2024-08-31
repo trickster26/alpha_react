@@ -17,6 +17,7 @@ import UploadCSV from "components/Campaign/UploadCSV";
 import { Provider } from 'react-redux';
 import store from './store';
 import { AuthProvider } from './context/AuthContext';
+import ResetPassword from "components/User/ResetPassword";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -37,6 +38,7 @@ root.render(
           <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

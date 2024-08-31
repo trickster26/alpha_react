@@ -9,6 +9,7 @@
   --secondary-color: #d7e3ef;
   --box-shadow: 0 0 7px 0 var(--secondary-color);
   --main-color-hover: #52b1ae;
+  --light-bg: #CBF7F4;
 }
 
 body {
@@ -37,13 +38,17 @@ a:hover {
   color: var(--main-color);
 }
 
+.bg-light{
+  background-color: var(--light-bg) !important; 
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 /* Sign Up Form Css */
-.sign-up-form-width{
+.sign-up-form-width,.reset-form-width{
   width: 40%;
 }
 
@@ -71,7 +76,7 @@ input.form-control:focus {
 }
 
 @media (max-width: 576px) {
-  .sign-up-form-width{
+  .sign-up-form-width,.reset-form-width{
     width: 100%;
   }
 }
