@@ -69,7 +69,7 @@ const Register = () => {
 
   return (
     <>
-      <main className="form-signin w-100 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+      <main className="form-signin w-100 d-flex align-items-center justify-content-center bg-light" style={{ minHeight: '100vh' }}>
         <div className='sign-up-form-width shadow-sm p-3 mb-5 rounded border text-center' style={{ backgroundColor: '#fff' }}>
           <NotificationAlert ref={notificationAlert} />
           <form onSubmit={handleSubmit}>

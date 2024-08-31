@@ -197,7 +197,7 @@ export const CreateNewPassword = () => {
                 {loading ? 'Please wait...' : 'Save'}
               </button>
               <div className=''>
-                  <p className=''> Already have an account? <Link to="/signin">Sign In</Link></p>
+                  <p className=''> Already have an account? <Link to="/login">Sign In</Link></p>
               </div>
             </form>
           </div>
