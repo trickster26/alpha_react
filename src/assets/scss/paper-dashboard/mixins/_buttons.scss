@@ -2,6 +2,10 @@
 @mixin btn-styles($btn-color, $btn-states-color) {
     background-color: $btn-color;
 
+    & {
+        color: $white-color;
+    }
+
     &:hover,
     &:focus,
     &:active,
