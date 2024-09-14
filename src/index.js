@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/paper-dashboard.scss?v=1.3.0";
@@ -9,7 +9,7 @@ import "perfect-scrollbar/css/perfect-scrollbar.css";
 import "./index.css";
 
 import AdminLayout from "layouts/Admin.js";
-import Register from "components/User/Register";
+// import Register from "components/User/Register";
 import Login from "components/User/Login";
 import Error404 from "components/User/Error";
 import CampaignList from "components/Campaign/CampaignList";
@@ -17,6 +17,8 @@ import UploadCSV from "components/Campaign/UploadCSV";
 import { Provider } from 'react-redux';
 import store from './store';
 import { AuthProvider } from './context/AuthContext';
+import { LandingPage } from "components/Home/LandingPage";
+import Register from "components/User/Register";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -34,7 +36,8 @@ root.render(
             {/* Catch-all route for any unmatched paths under /admin */}
             <Route path="*" element={<Error404 />} />
           </Route>
-          <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+          {/* <Route path="/" element={<Navigate to="/admin/dashboard" replace />} /> */}
+          <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>

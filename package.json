@@ -9,6 +9,7 @@
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
+    "lineicons": "^1.0.3",
     "perfect-scrollbar": "^1.5.5",
     "react": "^18.3.1",
     "react-chartjs-2": "3.3.0",
