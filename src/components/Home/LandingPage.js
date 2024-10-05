@@ -11,6 +11,7 @@ import HeroImg from '../../assets/img/LandingPageImages/hero-img.png';
 import LeftDots from '../../assets/img/LandingPageImages/left-dots.svg';
 import Logo from '../../assets/img/LandingPageImages/logo.svg';
 import RightDots from '../../assets/img/LandingPageImages/right-dots.svg';
+import { Navbar } from "components/Navbars/Navbar";
 
 
 export const PreLoader = () => {
@@ -38,80 +39,6 @@ export const PreLoader = () => {
           </div>
         </>
     );
-}
-
-export const Navbar = () => {
-  useEffect(() => {
-      LandingPageScript();
-  }, []);
-
-  return (
-      <>
-        <header className="header">
-          <div className="navbar-area">
-            <div className="container">
-              <div className="row align-items-center">
-                <div className="col-lg-12">
-                  <nav className="navbar navbar-expand-lg margin-0-imp">
-                    <Link className="navbar-brand" to="index.html">
-                      <img src={Logo} alt="Logo" />
-                    </Link>
-                    <button
-                      className="navbar-toggler"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                    >
-                      <span className="toggler-icon"></span>
-                      <span className="toggler-icon"></span>
-                      <span className="toggler-icon"></span>
-                    </button>
-
-                    <div
-                      className="collapse navbar-collapse sub-menu-bar"
-                      id="navbarSupportedContent"
-                    >
-                      <ul id="nav" className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                          <Link className="page-scroll" to="#home">
-                            Home
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link className="page-scroll" to="#features">
-                            Features
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link className="page-scroll" to="#about">
-                            About
-                          </Link>
-                        </li>
-
-                        <li className="nav-item">
-                          <Link className="page-scroll" to="#why">
-                            Why
-                          </Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link to="#">Pricing</Link>
-                        </li>
-                        <li className="nav-item">
-                          <Link to="#">Clients</Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-      </>
-  );
 }
 
 export const HeroSection = () => {

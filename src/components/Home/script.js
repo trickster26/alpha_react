@@ -111,3 +111,10 @@ export function LandingPageScript() {
     });
   }
 }
+
+export function handleScrollTo(id) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}

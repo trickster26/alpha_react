@@ -30,7 +30,7 @@ import routes from "routes.js";
 
 var ps;
 
-function Dashboard(props) {
+export function DashboardOld(props) {
   const [backgroundColor, setBackgroundColor] = React.useState("black");
   const [activeColor, setActiveColor] = React.useState("info");
   const mainPanel = React.useRef();
@@ -91,4 +91,50 @@ function Dashboard(props) {
   );
 }
 
-export default Dashboard;
+export default function Dashboard(props) {
+  const mainPanel = React.useRef();
+  const location = useLocation();
+  React.useEffect(() => {
+    if (navigator.platform.indexOf("Win") > -1) {
+      ps = new PerfectScrollbar(mainPanel.current);
+      document.body.classList.toggle("perfect-scrollbar-on");
+    }
+    return function cleanup() {
+      if (navigator.platform.indexOf("Win") > -1) {
+        ps.destroy();
+        document.body.classList.toggle("perfect-scrollbar-on");
+      }
+    };
+  });
+  React.useEffect(() => {
+    mainPanel.current.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+  }, [location]);
+
+  return (
+    <div className="wrapper">
+      <Sidebar
+        {...props}
+        routes={routes}
+        bgColor="white"
+        activeColor="info"
+      />
+      <div className="main-panel" ref={mainPanel}>
+        <DemoNavbar {...props} />
+        <Routes>
+          {routes.map((prop, key) => {
+            return (
+              <Route
+                path={prop.path}
+                element={prop.component}
+                key={key}
+                exact
+              />
+            );
+          })}
+        </Routes>
+        <Footer fluid />
+      </div>
+    </div>
+  );
+}

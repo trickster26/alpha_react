@@ -1,35 +1,17 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
 import logo from "logo.svg";
+import Logo from '../../assets/img/LandingPageImages/logo.svg';
 
 var ps;
 
 function Sidebar(props) {
   const location = useLocation();
   const sidebar = React.useRef();
-  // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
@@ -49,24 +31,24 @@ function Sidebar(props) {
   return (
     <div
       className="sidebar"
-      data-color={props.bgColor}
+      data-color="white"
       data-active-color={props.activeColor}
     >
       <div className="logo">
-        <a
+        <Link
           href="https://www.creative-tim.com"
           className="simple-text logo-mini"
         >
           <div className="logo-img">
             <img src={logo} alt="react-logo" />
           </div>
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://www.creative-tim.com"
-          className="simple-text logo-normal"
+          className="simple-text logo-bold"
         >
-          Creative Tim
-        </a>
+          Alpha-D
+        </Link>
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>
         <Nav>
