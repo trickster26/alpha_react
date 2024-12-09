@@ -19,6 +19,8 @@ import store from './store';
 import { AuthProvider } from './context/AuthContext';
 import { LandingPage } from "components/Home/LandingPage";
 import Register from "components/User/Register";
+import CampaignCreate from "components/Campaign/CampaignCreate";
+import CampaignStats from "components/Campaign/CampaignStats";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -32,6 +34,8 @@ root.render(
             {/* Define specific admin routes */}
             <Route path="dashboard" element={<AdminLayout />} />
             <Route path="campaigns" element={<CampaignList />} />
+            <Route path="campaigns/create" element={<CampaignCreate />} />
+            <Route path="campaigns/stats/:campaignId" element={<CampaignStats />} />
             <Route path="upload-csv" element={<UploadCSV />} />
             {/* Catch-all route for any unmatched paths under /admin */}
             <Route path="*" element={<Error404 />} />
