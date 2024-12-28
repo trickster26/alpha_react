@@ -5,6 +5,7 @@ import emailIcon from '../../assets/img/email.svg';
 import userIcon from '../../assets/img/user.svg';
 import passwordIcon from '../../assets/img/password.svg';
 import NotificationAlert from "react-notification-alert";
+import { Navbar } from 'components/Navbars/Navbar';
 
 const Register = () => {
   const { register, loading, error, setError } = useContext(AuthContext);
@@ -69,11 +70,12 @@ const Register = () => {
 
   return (
     <>
-      <main className="form-signin w-100 d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-        <div className='sign-up-form-width shadow-sm p-3 mb-5 rounded border text-center' style={{ backgroundColor: '#fff' }}>
+    <Navbar/>
+      <main className="form-signin w-100 d-flex align-items-center justify-content-center hero-section" style={{ minHeight: '100vh' }}>
+        <div className='sign-up-form-width shadow-sm p-4 mb-5 rounded border text-center' style={{ backgroundColor: '#fff' }}>
           <NotificationAlert ref={notificationAlert} />
           <form onSubmit={handleSubmit}>
-            <p className="h3 mb-3 fw-bold primary-text-color">Sign Up</p>
+            <p className="h3 mb-4 fw-bold text-primary">Sign Up</p>
             {errors.username && <div className="text-danger">{errors.username}</div>}
             {errors.email && <div className="text-danger">{errors.email}</div>}
             {errors.password && <div className="text-danger">{errors.password}</div>}
@@ -126,10 +128,10 @@ const Register = () => {
                 disabled={loading}
               />
             </div>
-            <button className="btn btn-primary btn-lg w-100 py-2 mt-3" type="submit" disabled={loading}>
+            <button className="main-btn btn-hover rounded w-100 py-2 my-2" type="submit" disabled={loading}>
               {loading ? 'Creating Account...' : 'Create Account'}
             </button>
-            <p>Already have an account? <Link to="/login">Sign In</Link></p>
+            <p className='ptext-sm'>Already have an account? <Link to="/login" className='text-primary'>Sign In</Link></p>
           </form>
         </div>
       </main>

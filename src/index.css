@@ -21,20 +21,11 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--main-color);
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
-}
-
-a:hover {
-  color: var(--main-color-hover);
-}
-
-.primary-text-color{
-  color: var(--main-color);
 }
 
 code {
@@ -60,6 +51,10 @@ code {
   height: 24px;
 }
 
+.ptext-sm{
+  font-size: 16px;
+}
+
 .input-wrapper input {
   padding-left: 40px;
 }
@@ -72,6 +67,6 @@ input.form-control:focus {
 
 @media (max-width: 576px) {
   .sign-up-form-width{
-    width: 100%;
+    width: 90%;
   }
 }

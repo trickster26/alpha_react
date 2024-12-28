@@ -23,9 +23,9 @@ export const Navbar = () => {
           <div className="row align-items-center">
             <div className="col-lg-12">
               <nav className="navbar navbar-expand-lg margin-0-imp">
-                <Link className="navbar-brand" to="index.html">
+                {/* <Link className="navbar-brand" to="/"> */}
                   <img src={Logo} alt="Logo" />
-                </Link>
+                {/* </Link> */}
                 <button
                   className="navbar-toggler"
                   type="button"

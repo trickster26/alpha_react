@@ -25,6 +25,8 @@ import Maps from "views/Map.js";
 import UserPage from "views/User.js";
 import UploadCSV from "components/Campaign/UploadCSV";
 import CampaignList from "components/Campaign/CampaignList";
+import CustomerList from "components/Customers/CustomerList";
+import Customer from "components/Customers/Customer";
 
 var routes = [
   {
@@ -39,6 +41,13 @@ var routes = [
     name: "campaigns",
     icon: "nc-icon nc-bank",
     component: <CampaignList />,
+    layout: "/admin",
+  },
+  {
+    path: "/customers",
+    name: "Customers",
+    icon: "nc-icon nc-paper",
+    component: <Customer />,
     layout: "/admin",
   },
   {

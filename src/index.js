@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/paper-dashboard.scss?v=1.3.0";
+// import "assets/scss/paper-dashboard.scss?v=1.3.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import "./index.css";
@@ -19,6 +19,8 @@ import store from './store';
 import { AuthProvider } from './context/AuthContext';
 import { LandingPage } from "components/Home/LandingPage";
 import Register from "components/User/Register";
+import Customer from "components/Customers/Customer";
+import Test from "components/User/test";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -33,6 +35,7 @@ root.render(
             <Route path="dashboard" element={<AdminLayout />} />
             <Route path="campaigns" element={<CampaignList />} />
             <Route path="upload-csv" element={<UploadCSV />} />
+            <Route path="customer" element={<Customer />} />
             {/* Catch-all route for any unmatched paths under /admin */}
             <Route path="*" element={<Error404 />} />
           </Route>
@@ -40,6 +43,7 @@ root.render(
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

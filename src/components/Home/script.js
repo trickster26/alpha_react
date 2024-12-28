@@ -116,5 +116,13 @@ export function handleScrollTo(id) {
   const element = document.getElementById(id);
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    window.location.href = '/#' + id;
+    setTimeout(() => {
+      const homeElement = document.getElementById(id);
+      if (homeElement) {
+        homeElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 2000);
   }
 }

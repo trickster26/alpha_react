@@ -2,9 +2,11 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { AuthContext } from 'context/AuthContext';
 import emailIcon from '../../assets/img/email.svg';
 import passwordIcon from "../../assets/img/password.svg";
-import styles from "../../assets/css/SignUp.module.css";
-import { Link } from "react-router-dom";
+// import styles from "../../assets/css/SignUp.module.css";
+import { useNavigate, Link } from "react-router-dom";
 import NotificationAlert from "react-notification-alert";
+import { Navbar } from 'components/Navbars/Navbar';
+// import userIcon from '../../assets/img/user.svg';
 
 const Login = () => {
   const { login, loading, error, setError } = useContext(AuthContext);
@@ -12,6 +14,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const notificationAlert = useRef(null);
+  const navigate = useNavigate();
 
   const validate = (name, value) => {
     let error = '';
@@ -28,7 +31,7 @@ const Login = () => {
       if (!value) {
         error = 'Password is required';
       } else if (value.length < 6) {
-        error = 'Password must be at least 6 characters';
+        // error = 'Password must be at least 6 characters';
       }
     }
 
@@ -66,6 +69,7 @@ const Login = () => {
 
     try {
       await login(formData.email, formData.password);
+      navigate('/admin/dashboard');
     } catch (error) {
       // Handle error within the context if needed
     }
@@ -97,56 +101,51 @@ const Login = () => {
   }, [error, setError]);
 
   return (
-    <div className={styles.container}>
-      <NotificationAlert ref={notificationAlert} />
-      <form className={styles.formLogin} autoComplete="off" onSubmit={handleSubmit}>
-        <h2>Sign In</h2>
-
-        <div>
-          <div>
-            <input 
-              type="text" 
-              name="email" 
-              value={formData.email} 
-              placeholder="E-mail" 
-              onChange={handleChange} 
-              onBlur={handleBlur} 
-              autoComplete="off" 
-              disabled={loading}  // Disable input if loading
-            />
-            <img src={emailIcon} alt="" />
-            {touched.email && errors.email && <div className={styles.error}>{errors.email}</div>}
-          </div>
+    <>
+      <Navbar />
+      <main className="form-signin w-100 d-flex align-items-center justify-content-center hero-section" style={{ minHeight: '100vh' }}>
+        <div className='sign-up-form-width shadow-sm p-4 mb-5 rounded border text-center' style={{ backgroundColor: '#fff' }}>
+          <NotificationAlert ref={notificationAlert} />
+          <form onSubmit={handleSubmit}>
+            <p className="h3 mb-4 fw-bold text-primary">Sign In</p>
+            {errors.email && <div className="text-danger">{errors.email}</div>}
+            {errors.password && <div className="text-danger">{errors.password}</div>}
+            <div className="my-2 input-wrapper">
+              <img src={emailIcon} alt="Email icon" />
+              <input
+                type="text"
+                className="form-control py-3 shadow-sm rounded"
+                placeholder="Email"
+                name="email"
+                value={formData.email}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                disabled={loading}
+              />
+            </div>
+            <div className="my-2 input-wrapper">
+              <img src={passwordIcon} alt="Password icon" />
+              <input
+                type="password"
+                className="form-control py-3 shadow-sm rounded"
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                disabled={loading}
+              />
+            </div>
+            <button className="main-btn btn-hover rounded w-100 py-2 my-2" type="submit" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+            <p className='ptext-sm' style={{ color: "#a29494", textAlign: "center", display: "inline-block", width: "100%" }}>
+              Don't have an account? <Link className='text-primary' to="/signup">Create account</Link>
+            </p>
+          </form>
         </div>
-
-        <div>
-          <div>
-            <input 
-              type="password" 
-              name="password" 
-              value={formData.password} 
-              placeholder="Password" 
-              onChange={handleChange} 
-              onBlur={handleBlur} 
-              autoComplete="off"
-              disabled={loading}  // Disable input if loading
-            />
-            <img src={passwordIcon} alt="" />
-            {touched.password && errors.password && <div className={styles.error}>{errors.password}</div>}
-          </div>
-        </div>
-      
-        <div>
-          <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-          <span style={{ color: "#a29494", textAlign: "center", display: "inline-block", width: "100%" }}>
-            Don't have an account? <Link to="/signup">Create account</Link>
-          </span>
-        </div>
-  
-      </form>
-    </div>
+      </main>
+    </>
   );
 };
 
