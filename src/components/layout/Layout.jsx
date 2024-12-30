@@ -5,9 +5,21 @@ import Footer from './Footer';
 
 function Layout({ children }) {
   const location = useLocation();
-  const isDashboard = location.pathname.startsWith('/dashboard');
 
-  if (isDashboard) {
+  const isDashboard = location.pathname.startsWith('/dashboard');
+  
+  // List of paths where we don't want the header and footer
+  const authPages = [
+    '/login',
+    '/signup',
+    '/forgot-password',
+    '/reset-password'
+  ];
+
+  // Check if current path is in authPages
+  const isAuthPage = authPages.includes(location.pathname);
+
+  if (isAuthPage || isDashboard) {
     return children;
   }
 
