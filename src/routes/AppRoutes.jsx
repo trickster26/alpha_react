@@ -24,12 +24,13 @@ import Help from '../pages/Help';
 import CreateCampaign from '../pages/CreateCampaign';
 import Audience from '../pages/Audience';
 import CreateAudience from '../pages/CreateAudience';
+import { LandingPage } from '../pages/Home/LandingPage';
 
 function AppRoutes() {
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/documentation" element={<Documentation />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/contact" element={<Contact />} />
@@ -44,7 +45,7 @@ function AppRoutes() {
       
       {/* Dashboard Routes */}
       <Route path="/dashboard" element={
-            <DashboardLayout />
+            <Dashboard />
           
         } />
       <Route path="/dashboard/campaigns" element={<Campaign />} />
