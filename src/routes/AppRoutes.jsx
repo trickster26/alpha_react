@@ -44,7 +44,7 @@ function AppRoutes() {
       
       {/* Dashboard Routes */}
       <Route path="/dashboard" element={
-            <DashboardLayout />
+            <Dashboard />
           
         } />
       <Route path="/dashboard/campaigns" element={<Campaign />} />
