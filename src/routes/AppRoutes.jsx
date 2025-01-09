@@ -24,6 +24,7 @@ import Help from '../pages/Help';
 import CreateCampaign from '../pages/CreateCampaign';
 import Audience from '../pages/Audience';
 import CreateAudience from '../pages/CreateAudience';
+import ProtectedRoute from '../components/auth/ProtectedRoute';
 
 function AppRoutes() {
   return (
@@ -42,12 +43,17 @@ function AppRoutes() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       
-      {/* Dashboard Routes */}
+      {/* Protected Routes */}
       <Route path="/dashboard" element={
-            <Dashboard />
-          
-        } />
-      <Route path="/dashboard/campaigns" element={<Campaign />} />
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/campaigns" element={
+        <ProtectedRoute>
+          <Campaign />
+        </ProtectedRoute>
+      } />
       <Route path="/dashboard/campaigns/new" element={<CreateCampaign />} />
       <Route path="/dashboard/analytics" element={<Analytics />} />
       <Route path="/dashboard/automation" element={<Automation />} />
