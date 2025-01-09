@@ -5,12 +5,13 @@ import { useAuth } from '../../context/AuthContext';
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
   const location = useLocation();
+  const isAuthenticated = localStorage.getItem('token');
 
   if (loading) {
     return <div>Loading...</div>; // Or your loading component
   }
 
-  if (!user) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 

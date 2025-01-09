@@ -44,8 +44,9 @@ const authService = {
 
   async login(email, password) {
     const response = await axiosInstance.post('/api/auth/login', { email, password });
-    if (response.token) {
-      localStorage.setItem('token', response.token);
+    console.log(response);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
     }
     return response;
   },

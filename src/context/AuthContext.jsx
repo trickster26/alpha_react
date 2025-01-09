@@ -30,6 +30,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const { data } = await authService.login(email, password);
+      console.log(data);
+      
       setUser(data.user);
       toast.success('Login successful!');
       navigate('/dashboard');
