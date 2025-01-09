@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 
 function Sidebar({ isOpen, setIsOpen }) {
   const location = useLocation();
+  const { user } = useAuth();
+  const { darkMode, toggleTheme } = useTheme();
 
   const navigation = [
     {
@@ -83,14 +88,19 @@ function Sidebar({ isOpen, setIsOpen }) {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 w-64 bg-neutral-800 transform ${
+        className={`fixed inset-y-0 left-0 w-64 transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0 z-50`}
+        } transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0 z-50
+        ${darkMode ? 'bg-neutral-800' : 'bg-white border-r border-gray-200'}`}
       >
         <div className="h-full flex flex-col">
           {/* Logo */}
-          <div className="h-16 flex items-center px-6 border-b border-neutral-700">
-            <Link to="/" className="text-white text-xl font-bold">
+          <div className={`h-16 flex items-center px-6 border-b ${
+            darkMode ? 'border-neutral-700' : 'border-gray-200'
+          }`}>
+            <Link to="/" className={`text-xl font-bold ${
+              darkMode ? 'text-white' : 'text-gray-900'
+            }`}>
               Logo
             </Link>
           </div>
@@ -105,8 +115,12 @@ function Sidebar({ isOpen, setIsOpen }) {
                   to={item.path}
                   className={`flex items-center px-2 py-2 rounded-lg transition-colors ${
                     isActive
-                      ? 'bg-neutral-700 text-white'
-                      : 'text-neutral-300 hover:bg-neutral-700 hover:text-white'
+                      ? darkMode 
+                        ? 'bg-neutral-700 text-white'
+                        : 'bg-gray-100 text-gray-900'
+                      : darkMode
+                        ? 'text-neutral-300 hover:bg-neutral-700 hover:text-white'
+                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
                 >
                   <span className="mr-3">{item.icon}</span>
@@ -116,17 +130,44 @@ function Sidebar({ isOpen, setIsOpen }) {
             })}
           </nav>
 
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className={`mx-4 mb-2 p-2 rounded-lg flex items-center justify-center ${
+              darkMode 
+                ? 'bg-neutral-700 text-white hover:bg-neutral-600'
+                : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+            }`}
+          >
+            {darkMode ? (
+              <SunIcon className="w-5 h-5" />
+            ) : (
+              <MoonIcon className="w-5 h-5" />
+            )}
+            <span className="ml-2">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+          </button>
+
           {/* User Profile */}
-          <div className="p-4 border-t border-neutral-700">
+          <div className={`p-4 border-t ${
+            darkMode ? 'border-neutral-700' : 'border-gray-200'
+          }`}>
             <div className="flex items-center">
               <img
-                src="https://via.placeholder.com/40"
+                src="https://avatar.iran.liara.run/public"
                 alt="User avatar"
                 className="w-8 h-8 rounded-full"
               />
               <div className="ml-3">
-                <p className="text-sm font-medium text-white">John Doe</p>
-                <p className="text-xs text-neutral-400">john@example.com</p>
+                <p className={`text-sm font-medium ${
+                  darkMode ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {user?.name || '-'}
+                </p>
+                <p className={`text-xs ${
+                  darkMode ? 'text-neutral-400' : 'text-gray-500'
+                }`}>
+                  {user?.email || '-'}
+                </p>
               </div>
             </div>
           </div>

@@ -27,16 +27,15 @@ function RecentActivity() {
 
   if (loading) {
     return (
-      <div className="bg-neutral-800 rounded-xl border border-neutral-700 p-6">
-        <div className="h-6 bg-neutral-700 rounded w-32 mb-6 animate-pulse"></div>
+      <div className="space-y-4">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="flex items-start space-x-3 mb-4">
+          <div key={i} className="flex items-start space-x-3">
             <div className="animate-pulse">
-              <div className="w-10 h-10 bg-neutral-700 rounded-full"></div>
+              <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-neutral-700"></div>
             </div>
             <div className="flex-1 animate-pulse">
-              <div className="h-4 bg-neutral-700 rounded w-24 mb-2"></div>
-              <div className="h-3 bg-neutral-700 rounded w-48"></div>
+              <div className="h-4 rounded w-24 mb-2 bg-gray-200 dark:bg-neutral-700"></div>
+              <div className="h-3 rounded w-48 bg-gray-200 dark:bg-neutral-700"></div>
             </div>
           </div>
         ))}
@@ -46,35 +45,25 @@ function RecentActivity() {
 
   if (error) {
     return (
-      <div className="bg-neutral-800 rounded-xl border border-neutral-700 p-6">
-        <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-4">
-          <p className="text-red-400 text-center">{error}</p>
-        </div>
+      <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-4">
+        <p className="text-red-400 text-center">{error}</p>
       </div>
     );
   }
 
   if (!activities.length) {
     return (
-      <div className="bg-neutral-800 rounded-xl border border-neutral-700 p-6">
-        <h2 className="text-lg font-semibold text-white mb-4">Recent Activity</h2>
-        <div className="text-center py-8">
-          <p className="text-neutral-400">No recent activity to display</p>
-        </div>
+      <div className="text-center py-8">
+        <p className="text-gray-500 dark:text-neutral-400">No recent activity to display</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-neutral-800 rounded-xl border border-neutral-700">
-      <div className="p-6">
-        <h2 className="text-lg font-semibold text-white mb-4">Recent Activity</h2>
-        <div className="space-y-4">
-          {activities.map((activity) => (
-            <ActivityItem key={activity.id} activity={activity} />
-          ))}
-        </div>
-      </div>
+    <div className="space-y-4">
+      {activities.map((activity) => (
+        <ActivityItem key={activity.id} activity={activity} />
+      ))}
     </div>
   );
 }
@@ -100,15 +89,15 @@ const ActivityItem = ({ activity }) => {
         </span>
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-white">
+        <p className="text-sm font-medium text-gray-900 dark:text-white">
           {activity.user}
         </p>
-        <p className="text-sm text-neutral-400">
+        <p className="text-sm text-gray-500 dark:text-neutral-400">
           {activity.type === 'purchase'
             ? `Made a purchase of ${activity.amount}`
             : `${activity.type.replace('_', ' ')} ${activity.email}`}
         </p>
-        <p className="text-xs text-neutral-500">
+        <p className="text-xs text-gray-400 dark:text-neutral-500">
           {formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}
         </p>
       </div>

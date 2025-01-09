@@ -28,6 +28,13 @@ const dashboardService = {
       headers: authHeader()
     });
     return response;
+  },
+
+  async getUserProfile() {
+    const response = await axios.get(`${API_URL}/api/users/profile`, {
+      headers: authHeader()
+    });
+    return response.data;
   }
 };
 

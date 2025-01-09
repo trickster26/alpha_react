@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import authService from '../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -10,18 +11,43 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const decodeAndSetUser = (token) => {
+    try {
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      setUser({
+        id: decoded.id,
+        email: decoded.email,
+        firstName: decoded.firstName,
+        lastName: decoded.lastName,
+        role: decoded.role
+      });
+      return decoded;
+    } catch (error) {
+      console.error('Token decode error:', error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     checkAuth();
   }, []);
 
   const checkAuth = async () => {
     try {
-      if (localStorage.getItem('token')) {
-        const { data } = await authService.getCurrentUser();
-        setUser(data.user);
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Decode and set user from token
+        const decoded = decodeAndSetUser(token);
+        if (!decoded) {
+          localStorage.removeItem('token');
+          setUser(null);
+        }
       }
     } catch (error) {
       console.error('Auth check failed:', error);
+      localStorage.removeItem('token');
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -30,9 +56,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const { data } = await authService.login(email, password);
-      console.log(data);
-      
-      setUser(data.user);
+      localStorage.setItem('token', data.token);
+      decodeAndSetUser(data.token);
       toast.success('Login successful!');
       navigate('/dashboard');
     } catch (error) {
@@ -44,7 +69,8 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       const { data } = await authService.register(userData);
-      setUser(data.user);
+      localStorage.setItem('token', data.token);
+      decodeAndSetUser(data.token);
       toast.success('Registration successful!');
       navigate('/dashboard');
     } catch (error) {
@@ -53,15 +79,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = async () => {
-    try {
-      await authService.logout();
-      setUser(null);
-      toast.success('Logged out successfully');
-      navigate('/login');
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
+  const logout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    toast.success('Logged out successfully');
+    navigate('/login');
   };
 
   return (

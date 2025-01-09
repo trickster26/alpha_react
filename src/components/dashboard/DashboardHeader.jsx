@@ -35,11 +35,11 @@ function DashboardHeader({ onMenuClick }) {
 
         {/* Right side items */}
         <div className="ml-4 flex items-center space-x-4">
-          <ThemeToggle />
+          { /*<ThemeToggle /> */ }
           <button className="flex items-center text-sm text-neutral-700 dark:text-white">
             <img
               className="h-8 w-8 rounded-full"
-              src="https://via.placeholder.com/32"
+              src="https://avatar.iran.liara.run/public"
               alt="User avatar"
             />
           </button>
